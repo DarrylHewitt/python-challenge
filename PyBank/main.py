@@ -9,12 +9,13 @@ csvpath = os.path.join("Resources", "budget_data.csv")
 # Open and read the csv file:
 with open(csvpath) as csvfile:
 
-    csvreader = csv.reader(csvfile, delimiter=',')
+    # Name the file and specify the delimiter:
+    budget_data = csv.reader(csvfile, delimiter=',')
 
     # Read and print header row:
-    csv_header = next(csvreader)
+    csv_header = next(budget_data)
     print(f"CSV Header: {csv_header}")
 
     # Read each row of data after the header:
-    for row in csvreader:
+    for row in budget_data:
         print(row)
