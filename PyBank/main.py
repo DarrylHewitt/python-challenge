@@ -24,7 +24,7 @@ with open(csvpath) as csvfile: # Open and read the csv file
     # The changes in "Profit/Losses" over the entire period, and then the average of those changes:
     csvfile.seek(0) # Reset the file pointer
     next(budget_data) # Skip the header row again
-    first_row = next(budget_data) # Assign the first row after the header to a first_row variable
+    first_row = next(budget_data) # Assign the first row after the header to a variable
 
     net_change_list = [] # Create list for every monthly change
     prev_val = int(first_row[1]) # Keep track of the previous value variable by initialising it to the first row
