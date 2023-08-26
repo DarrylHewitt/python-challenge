@@ -9,6 +9,10 @@ with open(csvpath) as csvfile: # Open and read the csv file
 
     next(budget_data) # Skip the header row
 
+    print("Financial Analysis")
+    
+    print("---------------------")
+
     # The total number of months included in the dataset and net total amount of "Profit/Losses" over the entire period:
     months = []
     total_profit_loss = 0
@@ -19,7 +23,7 @@ with open(csvpath) as csvfile: # Open and read the csv file
         total_profit_loss += profit_loss 
 
     print("Total Months:", len(months))
-    print("Total:", total_profit_loss)
+    print(f"Total: ${total_profit_loss}")
 
     # The changes in "Profit/Losses" over the entire period, and then the average of those changes:
     csvfile.seek(0) # Reset the file pointer
@@ -35,9 +39,10 @@ with open(csvpath) as csvfile: # Open and read the csv file
         prev_val = int(j[1]) # Once calculated, update the previous value to the current cell value
         net_change_list.append(net_change) # Add the calculation to the list
         
-    avg_net_change = sum(net_change_list) / len(net_change_list) #Find the average monthly change
+    avg_net_change = sum(net_change_list) / len(net_change_list) # Find the average monthly change
+    avg_net_change_rounded = round(avg_net_change, 2) # Round the number to two decimal places
 
-    print("Average change:", avg_net_change)
+    print(f"Average change: ${avg_net_change_rounded}")
 
     # Make the two lists the same size by adding a 0 value to the beginning of the shorter list
     max_length = max(len(months), len(net_change_list))
@@ -45,8 +50,8 @@ with open(csvpath) as csvfile: # Open and read the csv file
     net_change_list = [0] * (max_length - len(net_change_list)) + net_change_list
 
     combined_list = list(zip(months, net_change_list)) # Zip the two lists together
-    for month in combined_list:
-        print(month)
+    #for month in combined_list:
+        #print(month)
 
     # Initialise variables for min/max:
     max_inc = 0
@@ -62,7 +67,7 @@ with open(csvpath) as csvfile: # Open and read the csv file
         else:
             profit_loss = profit_loss + 1
 
-    print("Greatest Increase in Profits:", max_month, max_inc)
+    print(f"Greatest Increase in Profits: {max_month} (${max_inc})")
 
     # Use the for loop to find and return the greatest decrease and corresponding date:
     for month, profit_loss in combined_list:
@@ -72,7 +77,7 @@ with open(csvpath) as csvfile: # Open and read the csv file
         else: 
             profit_loss = profit_loss + 1
 
-    print("Greatest Decrease in Profits:", min_mon, max_dec)        
+    print(f"Greatest Decrease in Profits: {min_mon} (${max_dec})")        
         
 
         
