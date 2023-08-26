@@ -48,11 +48,13 @@ with open(csvpath) as csvfile: # Open and read the csv file
     for month in combined_list:
         print(month)
 
+    # Initialise variables for min/max:
     max_inc = 0
     max_dec = 0
     max_mon = None
     min_mon = None
    
+    # Use the for loop to find and return the greatest increase and corresponding date:
     for month, profit_loss in combined_list:
         if profit_loss > max_inc:
             max_inc = profit_loss
@@ -62,6 +64,7 @@ with open(csvpath) as csvfile: # Open and read the csv file
 
     print("Greatest Increase in Profits:", max_month, max_inc)
 
+    # Use the for loop to find and return the greatest decrease and corresponding date:
     for month, profit_loss in combined_list:
         if profit_loss < max_dec:
             max_dec = profit_loss
