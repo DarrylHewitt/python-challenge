@@ -31,7 +31,7 @@ with open(csvpath) as csvfile: # Open and read the csv file
 
     for j in budget_data: 
         
-        net_change = int(j[1]) - prev_val # Subject the current cell value from the previous value
+        net_change = int(j[1]) - prev_val # Subtract the current cell value from the previous value
         prev_val = int(j[1]) # Once calculated, update the previous value to the current cell value
         net_change_list.append(net_change) # Add the calculation to the list
 
