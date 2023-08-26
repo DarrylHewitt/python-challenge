@@ -14,8 +14,23 @@ with open(csvpath) as csvfile:
 
     # Read and print header row:
     csv_header = next(budget_data)
-    print(f"CSV Header: {csv_header}")
+    #print(f"CSV Header: {csv_header}")
+
+    # The total number of months included in the dataset:
+    month_count = 0
+    months = []
+    for row in budget_data:
+        months.append(row)
+    
+    print("Total Months:", len(months))
+
+    #month_count = sum(1 for row in budget_data)
+    #print(f"Total Months: {month_count}")
 
     # Read each row of data after the header:
-    for row in budget_data:
-        print(row)
+    #for row in budget_data:
+        #months = len(list(budget_data))
+        #months = months + 1
+        #print("Total Months: " + str(months))
+
+    
