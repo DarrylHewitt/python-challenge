@@ -39,7 +39,7 @@ with open(csvpath) as csvfile: # Open and read the csv file
 
     print("Average change:", avg_net_change)
 
-    # Make the two lists the same size by adding a None value to the beginning of the shorter list
+    # Make the two lists the same size by adding a 0 value to the beginning of the shorter list
     max_length = max(len(months), len(net_change_list))
     months = [None] * (max_length - len(months)) + months 
     net_change_list = [0] * (max_length - len(net_change_list)) + net_change_list
@@ -69,6 +69,8 @@ with open(csvpath) as csvfile: # Open and read the csv file
         if profit_loss < max_dec:
             max_dec = profit_loss
             min_mon = month
+        else: 
+            profit_loss = profit_loss + 1
 
     print("Greatest Decrease in Profits:", min_mon, max_dec)        
         
