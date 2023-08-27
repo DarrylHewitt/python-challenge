@@ -51,8 +51,8 @@ with open(csvpath) as csvfile: # Open and read the csv file
     mth_change_list = [0] * (max_length - len(mth_change_list)) + mth_change_list
 
     combined_list = list(zip(mths, mth_change_list)) # Zip the two lists together
-    for mth in combined_list:
-        print(mth)
+    #for mth in combined_list:
+        #print(mth) # Print the list for reference (optional)
 
     # Initialise variables for min/max:
     max_inc = 0
