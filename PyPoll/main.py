@@ -9,54 +9,74 @@ with open(csvpath) as csvfile:
 
     election_data = csv.reader(csvfile, delimiter=',')
 
-    next(election_data)
+    results_folder = "C:\\Users\\dhewi\\OneDrive\\Desktop\\Bootcamp\\Week_3\\Week_3_assignment\\python-challenge\\PyPoll\\Analysis"
+    results_path = os.path.join(results_folder, "election_results.txt")
 
-    print("------------------")
+    with open(results_path, "w") as file:
 
-    print("Election Results")
+        next(election_data)
 
-    print("------------------")
+        file.write("------------------\n")
 
-# The total number of votes cast:
+        file.write("Election Results\n")
 
-    ballot_count = [] # Declare a ballot count list
+        file.write("------------------\n")
 
-    for row in election_data:
-         ballot_count.append(row[0]) # Add each ballot count to the list
+        print("------------------")
 
-    total_votes = len(ballot_count) # Assign the length of the list to a variable to use later
+        print("Election Results")
+
+        print("------------------")
+
+
+        # The total number of votes cast:
+
+        ballot_count = [] # Declare a ballot count list
+
+        for row in election_data:
+            ballot_count.append(row[0]) # Add each ballot count to the list
+
+        total_votes = len(ballot_count) # Assign the length of the list to a variable to use later
          
-    print(f"Total votes:", total_votes)
+        file.write(f"Total votes: {total_votes}\n")
 
-    print("------------------")
+        print(f"Total votes: {total_votes}")
 
-    csvfile.seek(0) # Reset the file pointer
-    next(election_data) # Skip the header row again
+        file.write("------------------\n")
 
-    for row in election_data:
+        print("------------------")
 
-        candidate_name = row[2] # Declare a candidate name variable to the candidate column
+        csvfile.seek(0) # Reset the file pointer
+        next(election_data) # Skip the header row again
 
-        if candidate_name in candidate_data: # Check if the candidate is in the dictionary
-            candidate_data[candidate_name] += 1 # If they are, then increase their vote count by one
-        else:
-            candidate_data[candidate_name] = 1 # If they aren't, then start them off with a vote count of one
+        for row in election_data:
 
-    for candidate, votes in candidate_data.items(): # Loop through the key value pairs
-        percentage = (votes / total_votes) * 100 # Calculate percentage 
-        percentage_rounded = round(percentage, 3) # Round the percentage to the required decimal places
-        print(f"{candidate}: {percentage_rounded}% ({votes})")
+            candidate_name = row[2] # Declare a candidate name variable to the candidate column
 
-    print("------------------")
+            if candidate_name in candidate_data: # Check if the candidate is in the dictionary
+                candidate_data[candidate_name] += 1 # If they are, then increase their vote count by one
+            else:
+                candidate_data[candidate_name] = 1 # If they aren't, add them as a key and then start them off with a vote count of one
+
+        for candidate, votes in candidate_data.items(): # Loop through the key value pairs
+            percentage = (votes / total_votes) * 100 # Calculate percentage 
+            percentage_rounded = round(percentage, 3) # Round the percentage to the required decimal places
+            file.write(f"{candidate}: {percentage_rounded}% ({votes})\n")
+            print(f"{candidate}: {percentage_rounded}% ({votes})")
+
+        file.write("------------------\n")
+
+        print("------------------")
     
-    max_votes = max(candidate_data.values()) # Declare a variable for max votes and perform the max function. We only want to calculate the vote count, so we use .values()
-    for candidate, votes in candidate_data.items(): # We use .items() to loop through the values and their keys
-        if votes == max_votes: # If the total number of votes for a candidate matches the calculated max vote then ...
-            print(f"Winner: {candidate}") # Declare the winner
+        max_votes = max(candidate_data.values()) # Declare a variable for max votes and perform the max function. We only want to calculate the vote count, so we use .values()
+        for candidate, votes in candidate_data.items(): # We use .items() to loop through the values and their keys
+            if votes == max_votes: # If the total number of votes for a candidate matches the calculated max vote then ...
+                file.write(f"Winner: {candidate}\n") # Declare the winner
+                print(f"Winner: {candidate}")
 
-    print("------------------")
+        file.write("------------------\n")
 
+        print("------------------")
 
-        
 
 
